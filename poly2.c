@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <math.h>
-
-typedef struct {
+//while compiling math library use -lm at the end
+ struct PolynomialTerm{
     double coefficient;
     int exp_x;
     int exp_y;
-} PolynomialTerm;
+} ;
 
-double evaluatePolynomial(PolynomialTerm terms[], int numTerms, double x, double y) {
+double evaluatePolynomial(struct PolynomialTerm terms[], int numTerms, double x, double y) {
     double result = 0.0;
     
     for (int i = 0; i < numTerms; i++) {
-        PolynomialTerm term = terms[i];
+        struct PolynomialTerm term = terms[i];
         double termValue = term.coefficient * pow(x, term.exp_x) * pow(y, term.exp_y);
         result += termValue;
     }
@@ -25,7 +25,7 @@ int main() {
     printf("Enter the number of terms in the polynomial: ");
     scanf("%d", &numTerms);
     
-    PolynomialTerm terms[numTerms];
+    struct PolynomialTerm terms[numTerms];
     
     for (int i = 0; i < numTerms; i++) {
         printf("Enter the coefficient, exponent of x, and exponent of y for term %d:\n", i + 1);
